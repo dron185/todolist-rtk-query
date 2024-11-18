@@ -4,18 +4,18 @@ import { Todolist } from "./todolistsApi.types"
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 import { DomainTodolist } from "../model/todolistsSlice"
 
-
 export const todolistsApi = createApi({
   reducerPath: "todolistsApi",
   baseQuery: fetchBaseQuery({
     baseUrl: process.env.REACT_APP_BASE_URL,
-    prepareHeaders: headers => {
+    prepareHeaders: (headers) => {
       headers.set("API-KEY", `${process.env.REACT_APP_API_KEY}`)
       headers.set("Authorization", `Bearer ${localStorage.getItem("sn-token")}`)
     },
   }),
   endpoints: (build) => ({
-    getTodolists: build.query<any[], void>({  // 1 - й парам -
+    // 1-й парам-то что наш эндпойнт будет возвращать, 2-й-то что будет принимать
+    getTodolists: build.query<DomainTodolist[], void>({
       query: () => "todo-lists",
       transformResponse(todolists: Todolist[]): DomainTodolist[] {
         return todolists.map((tl) => ({ ...tl, filter: "all", entityStatus: "idle" }))
@@ -27,18 +27,27 @@ export const todolistsApi = createApi({
         return {
           url: "todo-lists",
           method: "POST",
-          body: { title }
+          body: { title },
         }
       },
     }),
 
+    updateTodolistTitle: build.mutation<BaseResponse, { id: string; title: string }>({
+      query: ({ id, title }) => {
+        return {
+          method: "PUT",
+          url: `todo-lists/${id}`,
+          body: {
+            title,
+          },
+        }
+      },
+    }),
   }),
 })
 
-export const { useGetTodolistsQuery } = todolistsApi
-export const { useLazyGetTodolistsQuery } = todolistsApi
-
-
+export const { useGetTodolistsQuery, useAddTodolistMutation, useUpdateTodolistTitleMutation } = todolistsApi
+//export const { useLazyGetTodolistsQuery } = todolistsApi
 
 export const _todolistsApi = {
   getTodolists() {

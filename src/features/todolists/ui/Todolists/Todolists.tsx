@@ -1,8 +1,7 @@
 import Paper from "@mui/material/Paper"
 import Grid from "@mui/material/Unstable_Grid2"
 import { Todolist } from "./Todolist/Todolist"
-import { useGetTodolistsQuery, useLazyGetTodolistsQuery } from "../../api/todolistsApi"
-import { useState } from "react"
+import { useGetTodolistsQuery } from "../../api/todolistsApi"
 
 export const Todolists = () => {
   // const todolists = useAppSelector(selectTodolists)
