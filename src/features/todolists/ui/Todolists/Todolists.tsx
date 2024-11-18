@@ -27,7 +27,7 @@ export const Todolists = () => {
   return (
     <>
       {/*<div>*/}
-      {/*  <button onClick={fetchTodolistHandler}>Загрузить тудулисты</button>*/}
+      {/*  <button onClick={refetch}>Загрузить тудулисты</button>*/}
       {/*</div>*/}
       {todolists?.map((tl) => {
         return (
