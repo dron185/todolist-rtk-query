@@ -19,35 +19,28 @@ export const Task = ({ task, todolist }: Props) => {
   const [removeTask] = useRemoveTaskMutation()
   const [updateTask] = useUpdateTaskMutation()
 
+  const createTaskModel = (task: DomainTask, domainModel: Partial<UpdateTaskModel>): UpdateTaskModel => ({
+    status: task.status,
+    title: task.title,
+    deadline: task.deadline,
+    description: task.description,
+    priority: task.priority,
+    startDate: task.startDate,
+    ...domainModel,
+  })
+
   const removeTaskHandler = () => {
     removeTask({ taskId: task.id, todolistId: todolist.id })
   }
 
   const changeTaskStatusHandler = (e: ChangeEvent<HTMLInputElement>) => {
     let status = e.currentTarget.checked ? TaskStatus.Completed : TaskStatus.New
-
-    const model: UpdateTaskModel = {
-      status,
-      title: task.title,
-      deadline: task.deadline,
-      description: task.description,
-      priority: task.priority,
-      startDate: task.startDate,
-    }
-
+    const model = createTaskModel(task, { status })
     updateTask({ taskId: task.id, todolistId: todolist.id, model })
   }
 
   const changeTaskTitleHandler = (title: string) => {
-    const model: UpdateTaskModel = {
-      status: task.status,
-      title,
-      deadline: task.deadline,
-      description: task.description,
-      priority: task.priority,
-      startDate: task.startDate,
-    }
-
+    const model = createTaskModel(task, { title })
     updateTask({ taskId: task.id, todolistId: todolist.id, model })
   }
 
