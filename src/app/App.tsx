@@ -6,11 +6,10 @@ import { getTheme } from "common/theme"
 import { Outlet } from "react-router-dom"
 import CircularProgress from "@mui/material/CircularProgress"
 import s from "./App.module.css"
-import { selectThemeMode } from "./appSlice"
+import { selectThemeMode, setIsLoggedIn } from "./appSlice"
 import { useMeQuery } from "../features/auth/api/authAPI"
 import { useEffect, useState } from "react"
 import { ResultCode } from "common/enums"
-import { setIsLoggedIn } from "../features/auth/model/authSlice"
 
 export const App = () => {
   const themeMode = useAppSelector(selectThemeMode)

@@ -4,15 +4,13 @@ import { Path } from "common/router"
 import { AddItemForm } from "common/components"
 import { useAppSelector } from "common/hooks"
 import { Navigate } from "react-router-dom"
-import { selectIsLoggedIn } from "../features/auth/model/authSlice"
 import { Todolists } from "../features/todolists/ui/Todolists/Todolists"
 import { useAddTodolistMutation } from "../features/todolists/api/todolistsApi"
+import { selectIsLoggedIn } from "./appSlice"
 
 export const Main = () => {
   const [addTodolist, res] = useAddTodolistMutation()
   const isLoggedIn = useAppSelector(selectIsLoggedIn)
-
-  console.log(res)
 
   const addTodolistCb = (title: string) => {
     addTodolist(title)
