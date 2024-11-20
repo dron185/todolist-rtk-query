@@ -30,15 +30,21 @@ export const Header = () => {
   }
 
   const logoutHandler = () => {
-    logout().then((res) => {
-      if (res.data?.resultCode === ResultCode.Success) {
-        dispatch(setIsLoggedIn({ isLoggedIn: false }))
-        localStorage.removeItem("sn-token")
-        //dispatch(clearTasks())
-        //dispatch(clearTodolists())
-        dispatch(baseApi.util.resetApiState())
-      }
-    })
+    logout()
+      .then((res) => {
+        if (res.data?.resultCode === ResultCode.Success) {
+          dispatch(setIsLoggedIn({ isLoggedIn: false }))
+          localStorage.removeItem("sn-token")
+          //dispatch(clearTasks())
+          //dispatch(clearTodolists())
+
+          //dispatch(baseApi.util.resetApiState())
+        }
+      })
+      // or:
+      .then(() => {
+        dispatch(baseApi.util.invalidateTags(["Task", "Todolist"]))
+      })
   }
 
   return (
