@@ -2,7 +2,7 @@ import Paper from "@mui/material/Paper"
 import Grid from "@mui/material/Unstable_Grid2"
 import { Todolist } from "./Todolist/Todolist"
 import { useGetTodolistsQuery } from "../../api/todolistsApi"
-import Skeleton from "@mui/material/Skeleton"
+import { TodolistSkeleton } from "../skeletons/TodolistSkeleton/TodolistSkeleton"
 
 export const Todolists = () => {
   // const todolists = useAppSelector(selectTodolists)
@@ -24,7 +24,15 @@ export const Todolists = () => {
   const { data: todolists, isLoading } = useGetTodolistsQuery()
 
   if (isLoading) {
-    return <Skeleton />
+    return (
+      <div style={{ display: "flex", justifyContent: "space-between", gap: "32px" }}>
+        {Array(3)
+          .fill(null)
+          .map((_, id) => (
+            <TodolistSkeleton key={id} />
+          ))}
+      </div>
+    )
   }
 
   return (
