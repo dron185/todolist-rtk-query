@@ -4,13 +4,31 @@ import { DomainTodolist } from "../../../../model/todolistsSlice"
 import { Task } from "./Task/Task"
 import { useGetTasksQuery } from "../../../../api/tasksApi"
 import { TasksSkeleton } from "../../../skeletons/TasksSkeleton/TasksSkeleton"
+import { useAppDispatch } from "common/hooks"
+import { setAppError } from "../../../../../../app/appSlice"
+import { useEffect } from "react"
 
 type Props = {
   todolist: DomainTodolist
 }
 
+type ErrorData = {
+  status: number
+  data: {
+    message: string
+  }
+}
+
 export const Tasks = ({ todolist }: Props) => {
-  const { data, isLoading } = useGetTasksQuery(todolist.id)
+  const { data, isLoading, error } = useGetTasksQuery(todolist.id)
+
+  // const dispatch = useAppDispatch()
+  // useEffect(() => {
+  //   if (error) {
+  //     const errorData = error as ErrorData
+  //     dispatch(setAppError({ error: errorData.data.message }))
+  //   }
+  // }, [error])
 
   let tasksForTodolist = data?.items
 
