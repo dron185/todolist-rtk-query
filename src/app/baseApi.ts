@@ -20,4 +20,5 @@ export const baseApi = createApi({
   tagTypes: ["Todolist", "Task"],
   keepUnusedDataFor: 50, // time of the cache (default - 60)
   refetchOnFocus: true,
+  refetchOnReconnect: true,
 })
