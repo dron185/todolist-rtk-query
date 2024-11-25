@@ -18,4 +18,5 @@ export const baseApi = createApi({
   },
   endpoints: () => ({}),
   tagTypes: ["Todolist", "Task"],
+  keepUnusedDataFor: 50, // time of the cache (default - 60)
 })
