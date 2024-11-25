@@ -9,23 +9,8 @@ type Props = {
   todolist: DomainTodolist
 }
 
-// type ErrorData = {
-//   status: number
-//   data: {
-//     message: string
-//   }
-// }
-
 export const Tasks = ({ todolist }: Props) => {
-  const { data, isLoading, error } = useGetTasksQuery(todolist.id)
-
-  // const dispatch = useAppDispatch()
-  // useEffect(() => {
-  //   if (error) {
-  //     const errorData = error as ErrorData
-  //     dispatch(setAppError({ error: errorData.data.message }))
-  //   }
-  // }, [error])
+  const { data, isLoading, error } = useGetTasksQuery({ todolistId: todolist.id, args: { page: 1 } })
 
   let tasksForTodolist = data?.items
 
