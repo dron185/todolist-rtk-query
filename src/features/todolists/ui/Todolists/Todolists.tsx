@@ -5,22 +5,6 @@ import { useGetTodolistsQuery } from "../../api/todolistsApi"
 import { TodolistSkeleton } from "../skeletons/TodolistSkeleton/TodolistSkeleton"
 
 export const Todolists = () => {
-  // const todolists = useAppSelector(selectTodolists)
-  //
-  // const dispatch = useAppDispatch()
-  //
-  // useEffect(() => {
-  //   dispatch(fetchTodolistsTC())
-  // }, [])
-
-  //const [skip, setSkip] = useState(true)
-  //const { data: todolists } = useGetTodolistsQuery(undefined, { skip })
-  // const [trigger, { data: todolists }] = useLazyGetTodolistsQuery()
-  // const fetchTodolistHandler = () => {
-  //   //setSkip(false)
-  //   trigger()
-  // }
-
   const { data: todolists, isLoading } = useGetTodolistsQuery()
 
   if (isLoading) {
@@ -37,9 +21,6 @@ export const Todolists = () => {
 
   return (
     <>
-      {/*<div>*/}
-      {/*  <button onClick={refetch}>Загрузить тудулисты</button>*/}
-      {/*</div>*/}
       {todolists?.map((tl) => {
         return (
           <Grid key={tl.id}>

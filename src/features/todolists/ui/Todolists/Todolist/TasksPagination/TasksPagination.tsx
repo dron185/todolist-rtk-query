@@ -2,7 +2,7 @@ import Pagination from '@mui/material/Pagination'
 import Typography from '@mui/material/Typography'
 import { ChangeEvent } from 'react'
 import s from './TasksPagination.module.css'
-import { PAGE_SIZE } from "../../../../../todolists/api/tasksApi"
+import { PAGE_SIZE } from "../../../../api/tasksApi"
 
 type Props = {
   totalCount: number

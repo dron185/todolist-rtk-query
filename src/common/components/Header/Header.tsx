@@ -10,8 +10,6 @@ import { getTheme } from "common/theme"
 import { MenuButton } from "common/components"
 import { useLogoutMutation } from "../../../features/auth/api/authAPI"
 import { ResultCode } from "common/enums"
-import { clearTasks } from "../../../features/todolists/model/tasksSlice"
-import { clearTodolists } from "../../../features/todolists/model/todolistsSlice"
 import { baseApi } from "../../../app/baseApi"
 
 export const Header = () => {
@@ -35,13 +33,10 @@ export const Header = () => {
         if (res.data?.resultCode === ResultCode.Success) {
           dispatch(setIsLoggedIn({ isLoggedIn: false }))
           localStorage.removeItem("sn-token")
-          //dispatch(clearTasks())
-          //dispatch(clearTodolists())
-
-          //dispatch(baseApi.util.resetApiState())
+          // dispatch(baseApi.util.resetApiState()) - глобальный сброс всего закешированного state
         }
       })
-      // or:
+      // or: сбросить кэш только для определённых запросов:
       .then(() => {
         dispatch(baseApi.util.invalidateTags(["Task", "Todolist"]))
       })
