@@ -19,7 +19,6 @@ export const App = () => {
   const dispatch = useAppDispatch()
 
   const { data, isLoading } = useMeQuery()
-  // console.log({ data, isLoading })
 
   useEffect(() => {
     if (!isLoading) {
