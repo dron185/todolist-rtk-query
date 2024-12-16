@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/todolist-rtk-query/static/css/main.81276323.css",
+    "main.js": "/todolist-rtk-query/static/js/main.3e4eeebb.js",
+    "index.html": "/todolist-rtk-query/index.html",
+    "main.81276323.css.map": "/todolist-rtk-query/static/css/main.81276323.css.map",
+    "main.3e4eeebb.js.map": "/todolist-rtk-query/static/js/main.3e4eeebb.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.81276323.css",
+    "static/js/main.3e4eeebb.js"
+  ]
+}
