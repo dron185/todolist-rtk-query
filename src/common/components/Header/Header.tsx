@@ -1,6 +1,4 @@
-import MenuIcon from "@mui/icons-material/Menu"
 import AppBar from "@mui/material/AppBar"
-import IconButton from "@mui/material/IconButton"
 import LinearProgress from "@mui/material/LinearProgress"
 import Switch from "@mui/material/Switch"
 import Toolbar from "@mui/material/Toolbar"
@@ -45,12 +43,9 @@ export const Header = () => {
   return (
     <AppBar position="static" sx={{ mb: "30px" }}>
       <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
-        <IconButton color="inherit">
-          <MenuIcon />
-        </IconButton>
+        <h3>Todolist</h3>
         <div>
           {isLoggedIn && <MenuButton onClick={logoutHandler}>Logout</MenuButton>}
-          <MenuButton background={theme.palette.primary.dark}>Faq</MenuButton>
           <Switch color={"default"} onChange={changeModeHandler} />
         </div>
       </Toolbar>
